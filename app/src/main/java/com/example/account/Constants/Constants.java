@@ -1,7 +1,6 @@
-package com.example.account;
+package com.example.account.Constants;
 
 public class Constants  {
-    public static final String baseUrl = "";        //服务器地址
     public final static int POST = 0;
     public final static int GET = 1;
 }

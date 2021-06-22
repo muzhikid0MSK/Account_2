@@ -11,8 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-import com.example.account.util.InternetUtil;
+import com.example.account.mapper.AccountMapper;
+import com.example.account.mapper.InitMapper;
+import com.example.account.mapper.RecordMapper;
+import com.example.account.mapper.StatisticsMapper;
+import com.example.account.mapper.UserMapper;
+import com.example.account.pojo.dto.StatisticsDTO;
+import com.example.account.pojo.dto.StatisticsDetailDTO;
+import com.example.account.pojo.entity.Account;
+import com.example.account.pojo.entity.Record;
+import com.example.account.pojo.entity.User;
+import com.example.account.util.PieChartUtil;
+import com.example.account.util.SnowFlakeUtil;
 import com.github.mikephil.charting.charts.PieChart;
 
 
@@ -36,7 +46,6 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
-import okhttp3.OkHttpClient;
 
 /**
  * @author 梅盛珂
@@ -53,6 +62,15 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     List<Double> weeklyData;
     List<Double> yearlyData;
     List<Double> monthlyData;
+    List<StatisticsDetailDTO>proportionData;
+    private StatisticsMapper statisticsMapper;
+
+    private SQLiteDatabase database;
+    private UserMapper userMapper;
+    private RecordMapper recordMapper;
+    private AccountMapper accountMapper;
+
+    private User testUser;
 
     private TextView tvWeek;
     private TextView tvMonth;
@@ -69,7 +87,6 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     private double totalWeeklyData = 0;
     private double totalMonthlyData = 0;
     private double totalYearlyData = 0;
-
 
     /**
      * 绘制
@@ -150,7 +167,6 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     }
 
     private void initData(int c){
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd");
         Calendar calendar = Calendar.getInstance();
         switch (c){
@@ -164,25 +180,19 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                     calendar.add(Calendar.DATE, -1);
                 }
                 Collections.reverse(dates);
-                InternetUtil.getOkHttpClient(5000);
                 //TODO 从数据库中获取的日期这里是写死的
                 StatisticsDTO statisticsDTO;
                 if (currState == 0) {
                     statisticsDTO =
                             statisticsMapper.getWeeklyExpenditureStatistics(testUser.getId(),"2021","06","14");
-
                 }else{
                     statisticsDTO =
                             statisticsMapper.getWeeklyIncomeStatistics(testUser.getId(),"2021","06","14");
-
                 }
                 weeklyData = new ArrayList<>();
                 weeklyData = statisticsDTO.getDetailAmount();
                 totalWeeklyData = statisticsDTO.getTotalAmount();
                 proportionData = statisticsDTO.getDisplayDetailDTOList();
-
-
-
                 break;
             case 1: //月
                 dates = new ArrayList<>();

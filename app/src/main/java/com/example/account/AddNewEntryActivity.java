@@ -302,7 +302,7 @@ public class AddNewEntryActivity extends AppCompatActivity implements View.OnCli
 
     private void initListener() {
         ivZDining.setOnClickListener(this);
-        ivZClothing.setOnClickListener(this);
+//        ivZClothing.setOnClickListener(this);
         ivZDailyuse.setOnClickListener(this);
         ivZVegetables.setOnClickListener(this);
         ivZTravel.setOnClickListener(this);
@@ -323,11 +323,11 @@ public class AddNewEntryActivity extends AppCompatActivity implements View.OnCli
                 initImageView();
                 ivZDining.setAlpha((float)0.3);
                 break;
-            case R.id.imageView:
-                pictureSelect="服饰支出";
-                initImageView();
-                ivZClothing.setAlpha((float)0.3);
-                break;
+//            case R.id.imageView:
+//                pictureSelect="服饰支出";
+//                initImageView();
+//                ivZClothing.setAlpha((float)0.3);
+//                break;
             case R.id.imageView3:
                 pictureSelect="日用支出";
                 initImageView();
@@ -437,7 +437,7 @@ public class AddNewEntryActivity extends AppCompatActivity implements View.OnCli
         pictureSelect="餐饮支出";
 
         ivZDining = findViewById(R.id.imageView2);
-        ivZClothing = findViewById(R.id.imageView);
+//        ivZClothing = findViewById(R.id.imageView);
         ivZDailyuse = findViewById(R.id.imageView3);
         ivZVegetables = findViewById(R.id.imageView4);
         ivZTravel = findViewById(R.id.imageView6);

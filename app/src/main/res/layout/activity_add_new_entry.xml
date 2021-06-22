@@ -83,11 +83,11 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/addentry_fushi" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/imageView"-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            app:srcCompat="@drawable/addentry_fushi" />-->
 
                         <TextView
                             android:id="@+id/textView6"

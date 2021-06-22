@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.Objects;
 
 
 /**
@@ -15,7 +18,18 @@ import android.view.ViewGroup;
  * @description 我的
  */
 public class MeFragment extends Fragment {
+    ListView listView;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initView();
+    }
+
+    private void initView() {
+        listView = Objects.requireNonNull(getView()).findViewById(R.id.lv_demo);
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
